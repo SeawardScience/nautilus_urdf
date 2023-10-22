@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="namespace" default="nautilus"/>
+  <arg name="model" default="$(find nautilus_urdf)/urdf/nautilus.urdf.xacro"/>
+
+  <param name="$(arg namespace)/robot_description" command="$(find xacro)/xacro $(arg model) namespace:=$(arg namespace)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="$(arg namespace)"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ns="$(arg namespace)"/>
+</launch>
